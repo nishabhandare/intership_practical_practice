@@ -1,0 +1,77 @@
+----- Part A - Database & Table Creation
+show databases;
+create database company_db;
+use company_db;
+create table employees(employee_id int primary key,employee_name varchar(100),department varchar(50),
+salary decimal(10,2),city varchar (50),joining_date date,status varchar(20));
+
+----- Part B - INSERT Operations
+
+insert into employees values(101, "Rahul Patil", "Development", 45000, "Pune", "2026-01-10", "Active");
+insert into employees values(102, "Priya Sharma", "Testing", 38000, "Mumbai", "2026-02-15", "Active");
+insert into employees values(103, "Amit Joshi", "Development", 52000, "Pune", "2025-12-05", "Active");
+insert into employees values(104, "Sneha Kulkarni", "HR", 35000, "Nashik", "2026-03-20", "Active");
+insert into employees values(105, "Rohan Deshmukh", "Support", 30000, "Mumbai", "2026-04-01", "Inactive");
+insert into employees values(106, "Anjali More", "Testing", 42000, "Pune", "2026-05-12", "Active");
+
+----- Part C - Basic SELECT Queries
+select * from employees;
+select employee_name from employees;
+select employee_name,salary from employees;
+select employee_name,department,city from employees;
+select * from employees where city="Pune";
+select * from employees where city="Mumbai";
+select * from employees where department="Development";
+select * from employees where department="Testing";
+select * from employees where status="Active";
+select * from employees where status="Inactive";
+select * from employees where employee_id = 103;
+select * from employees where employee_name="Priya Sharma";
+select * from employees where salary > 40000;
+select * from employees where salary < 40000;
+select * from employees where salary = 35000;
+select * from employees where salary >= 42000;
+select * from employees where city="Pune" AND status="Active";
+select * from employees where department="Development" AND salary>45000;
+select * from employees where city="Pune" or city="Mumbai";
+
+----- Part D - UPDATE Operations
+update employees set salary=48000 where employee_name="Rahul Patil";
+update employees set status="Active" where employee_name="Rohan Deshmukh"; 
+update employees set city="Pune" where employee_name="Sneha Kulkarni";
+update employees set department="Development" where employee_name="Priya Sharma";
+update employees set salary=45000 where employee_id=106;
+update employees set salary=salary+3000 where employee_id=103;
+update employees set salary=salary+2000 where department="Testing";
+update employees set city="Mumbai Branch" where city="Mumbai";
+
+----- Part E - DELETE Operations
+delete from employees where employee_id=105;
+delete from employees where employee_name="Rohan Deshmukh";
+delete from employees where status="Inactive";
+delete from employees where salary<30000;
+delete from employees where employee_id = 104;
+
+----- Part F - ALTER TABLE / DDL Practice
+alter table employees add column email VARCHAR(100);
+alter table employees add column mobile VARCHAR(15);
+alter table employees modify city VARCHAR(100);
+alter table employees rename column employee_name to name;
+alter table employees drop column mobile;
+alter table employees add column experience INT;
+update employees set experience=5 where employee_id=104;
+
+----- Part G - Table-Level DDL Practice
+create table departments (department_id INT PRIMARY KEY,department_name VARCHAR(100),
+location VARCHAR(100));
+insert into departments values(1001,"Tester","Pune");
+insert into departments values(1002,"HR","Mumbai");
+insert into departments values(1003,"Developer","Delhi");
+select * from departments ;
+update departments set location="Nashik" where department_id=1002;
+delete from departments where department_id=1003;
+alter table departments rename to company_departments;
+desc company_departments; 
+truncate table company_departments;
+drop table company_departments;
+show tables;
